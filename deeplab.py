@@ -130,32 +130,3 @@ class DeeplabV3(object):
         
         return image
 
-    def get_miou_png(self, image,label2):
-
-        image       = cvtColor(image)
-        label2       = cvtColor(label2)
-        orininal_h  = np.array(image).shape[0]
-        orininal_w  = np.array(image).shape[1]
-
-        image_data, nw, nh  = resize_image(image, (self.input_shape[1],self.input_shape[0]))
-        label2_data, nw, nh  = resize_image(label2, (self.input_shape[1],self.input_shape[0]))
-
-        image_data  = np.expand_dims(np.transpose(preprocess_input(np.array(image_data, np.float32)), (2, 0, 1)), 0)
-        label2_data  = np.expand_dims(np.transpose(preprocess_input(np.array(label2_data, np.float32)), (2, 0, 1)), 0)
-
-        with torch.no_grad():
-            images = torch.from_numpy(image_data)
-            labels2 = torch.from_numpy(label2_data)
-
-            if self.cuda:
-                images = images.cuda()
-                labels2 = labels2.cuda()
-            pr = self.net(images,labels2)[0][0]
-            pr = F.softmax(pr.permute(1,2,0),dim = -1).cpu().numpy()
-            pr = pr[int((self.input_shape[0] - nh) // 2) : int((self.input_shape[0] - nh) // 2 + nh), \
-                    int((self.input_shape[1] - nw) // 2) : int((self.input_shape[1] - nw) // 2 + nw)]
-            pr = cv2.resize(pr, (orininal_w, orininal_h), interpolation = cv2.INTER_LINEAR)
-            pr = pr.argmax(axis=-1)
-    
-        image = Image.fromarray(np.uint8(pr))
-        return image
