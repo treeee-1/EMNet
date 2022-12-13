@@ -36,7 +36,7 @@ from utils.utils import cvtColor, preprocess_input, resize_image
 class DeeplabV3(object):
     _defaults = {
 
-        "model_path"        : 'logs/6gate/ep078-loss0.089-val_loss2.419.pth',
+        "model_path"        : 'logs/ep062-loss0.080-val_loss2.090.pth',
 
         "num_classes"       : 8,
 
