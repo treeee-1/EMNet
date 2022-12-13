@@ -8,14 +8,14 @@ if __name__ == "__main__":
 
     while True:
         img = input('Input image filename:')
-        label = input('Input image filename:')
+        canny = input('Input image filename:')
         try:
             image = Image.open(img)
-            label2 = Image.open(label)
+            canny2 = Image.open(canny)
 
         except:
             print('Open Error! Try again!')
             continue
         else:
-            r_image = deeplab.detect_image(image,label2)
+            r_image = deeplab.detect_image(image,canny2)
             r_image.show()
