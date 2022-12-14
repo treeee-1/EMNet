@@ -1,5 +1,5 @@
-# EMNet
-The trained model can be downloaded here: link: https://pan.baidu.com/s/12npvngSCe--y2-gCudp0Yg Extraction code: trej
+## Weights
+A file of trained weights based on the uavid dataset can be downloaded here: https://pan.baidu.com/s/12npvngSCe--y2-gCudp0Yg Extraction code: trej
 
 ## Train
 1. Use the VOC format for training.
