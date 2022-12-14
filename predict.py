@@ -6,7 +6,7 @@ if __name__ == "__main__":
 
     deeplab = DeeplabV3()
 #"img" indicates the path of the image to be predicted.
-#"canny" indicates the edge image obtained using the canny operator, which can assist in prediction.
+#"canny" indicates the edge image obtained using the canny operator, which can assist in prediction. Run utils.edgebatch.py.
     while True:
         img = input('Input image filename:')
         canny = input('Input image filename:')
